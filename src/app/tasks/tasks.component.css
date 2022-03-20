@@ -1,0 +1,18 @@
+::ng-deep .snackBarOk {
+  color: black !important;
+  background-color: rgb(39, 224, 39) !important;
+  border-color: #c3e6cb !important;
+}
+::ng-deep .snackSbagliata {
+  background-color: red;
+  color: rgb(83, 77, 77);
+}
+td,
+th {
+  text-align: left !important;
+  vertical-align: left !important;
+}
+
+.one {
+  background-color: rgb(199, 92, 31);
+}

@@ -1,0 +1,20 @@
+<div class="text-center">
+    <h3>{{data.title}}</h3>
+  </div>
+  <form [formGroup]="usersForm">
+  <div class="row">
+    <mat-form-field class="col-6">
+      <mat-label>Descrizione</mat-label>
+      <input *ngIf="!this.data.id" formControlName="username" (keyup.enter)="save()" matInput [(ngModel)]="user.username">
+      <input *ngIf="this.data.id" formControlName="username" (keyup.enter)="update()" matInput [(ngModel)]="user.username">
+      <mat-error *ngIf="usersForm.get('username').hasError('required') ">Devi inserire un username!</mat-error>
+      <mat-error *ngIf="usersForm.get('username').hasError('maxlength') ">Hai superato il numero di caratteri</mat-error>
+    </mat-form-field>
+    </div>
+    </form>
+  
+    <div class="row mt-5 justify-content-end">
+      <button *ngIf="!this.data.id" mat-raised-button color="primary" class="mr-2" (click)="save()">Aggiungi</button>
+      <button *ngIf="this.data.id" mat-raised-button color="primary" class="mr-2" (click)="update()">Modifica</button>
+      <button mat-raised-button color="accent" (click)="close()">Chiudi</button>
+    </div>

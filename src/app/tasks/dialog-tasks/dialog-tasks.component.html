@@ -1,0 +1,29 @@
+<div class="text-center">
+    <h3>{{data.title}}</h3>
+  </div>
+  <form [formGroup]="taskForm">
+  <div class="row">
+    <mat-form-field class="col-6">
+      <mat-label>Descrizione task</mat-label>
+      <input *ngIf="!this.data.id" formControlName="descrizione" (keyup.enter)="save()" matInput [(ngModel)]="task.descrizione">
+      <input *ngIf="this.data.id" formControlName="descrizione" (keyup.enter)="update()" matInput [(ngModel)]="task.descrizione">
+      <mat-error *ngIf="formControll(true)">Devi inserire la descrizione</mat-error>
+      <mat-error *ngIf="taskForm.get('descrizione').hasError('maxlength') ">Hai superato il numero di caratteri</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-6">
+      <mat-label>Frequenza (in giorni)</mat-label>
+      <input *ngIf="!this.data.id" formControlName="frequenza" type="number" (keyup.enter)="save()" matInput [(ngModel)]="task.frequenza">
+      <input *ngIf="this.data.id" formControlName="frequenza" type="number" (keyup.enter)="update()" matInput [(ngModel)]="task.frequenza">
+      <mat-error *ngIf="taskForm.get('frequenza').hasError('required') ">Devi inserire una frequenza!</mat-error>
+      <mat-error *ngIf="taskForm.get('frequenza').hasError('maxlength') ">Hai superato il numero di caratteri</mat-error>
+    </mat-form-field>
+    
+  </div>
+    </form>
+  
+    <div class="row mt-5 justify-content-end">
+      <button *ngIf="!this.data.id" mat-raised-button color="primary" class="mr-2" (click)="save()">Aggiungi</button>
+      <button *ngIf="this.data.id" mat-raised-button color="primary" class="mr-2" (click)="update()">Modifica</button>
+      <button mat-raised-button color="accent" (click)="close()">Chiudi</button>
+    </div>
+  

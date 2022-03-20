@@ -1,0 +1,62 @@
+<mat-card>
+    <mat-card-title class="text-center">{{titolo}}</mat-card-title>
+    <mat-card-content>
+    <!-- <button mat-raised-button color="primary" class="mb-3"(click)="openDialogToAdd()">Aggiungi</button> -->
+    <mat-icon (click)="openDialogToAdd()" class="md-raised md-primary" style="cursor:pointer">add_box</mat-icon>
+    <h3>{{messaggio}}</h3>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Search" (keyup)="cerca()" [(ngModel)]="searchText">
+      </mat-form-field>
+      <mat-icon (click)="cerca()" class="md-raised md-primary" style="cursor:pointer">search</mat-icon>
+      <!-- <button mat-raised-button color="primary" class="mb-3" (click)="cerca()">Cerca</button> -->
+    <table mat-table [dataSource]="tasks" class="table" matSort (matSortChange)="ordina($event)">
+    
+    <ng-container matColumnDef="descrizione">
+        <th mat-mat-header-cell *matHeaderCellDef mat-sort-header>Descrizione</th>
+        <td [ngClass]="{'one': check==false}" mat-cell *matCellDef="let task"> {{task.descrizione}} </td>
+      </ng-container>  
+      <ng-container matColumnDef="frequenza">
+        <th mat-mat-header-cell *matHeaderCellDef mat-sort-header>Frequenza (in giorni)</th>
+        <td [ngClass]="{'one': check==false}" *matCellDef="let task" style="text-align: center !important;"> {{task.frequenza}} </td>
+      </ng-container>  
+  
+    <ng-container  matColumnDef="pulitore">
+      <th mat-mat-header-cell *matHeaderCellDef mat-sort-header>Ultimo ad aver pulito</th>
+      <td [ngClass]="{'one': check==false}" mat-cell *matCellDef="let task"> {{task.pulitore}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dataPulizia">
+        <th mat-mat-header-cell *matHeaderCellDef mat-sort-header >Data Ultima Pulizia</th>
+        <td [ngClass]="{'one': check==false}" mat-cell *matCellDef="let task"> {{task.dataPulizia| date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="pulisci">
+        <th mat-mat-header-cell *matHeaderCellDef mat-sort-header ></th>
+        <td mat-cell *matCellDef="let task"> <button mat-raised-button color="primary" class="mb-3"(click)="openDialogToClean(task.id)">Pulisci</button> </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let task">
+          <mat-icon (click)="openDialogToUpdate(task.id)" style="cursor:pointer; color: rgb(190, 119, 12);">create</mat-icon>
+          <mat-icon (click)="openDialogToDelete(task)" style="cursor:pointer; color: red;">delete</mat-icon>
+          </td>
+      </ng-container>  
+      <ng-container matColumnDef="checkbox">
+        <th mat-mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let task">
+          <mat-checkbox></mat-checkbox>
+           </td>
+      </ng-container>  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+  </table>
+  <mat-paginator
+            (page)="loadPage($event)"
+                [length]="totalElements"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                [pageSizeOptions]="[5, 10, 15]"
+                 showFirstLastButtons aria-label="Select page">
+  </mat-paginator>
+  <div>

@@ -1,0 +1,26 @@
+<mat-sidenav-container class="sidenavContainer">
+    <mat-sidenav #sidenav mode="side" opened class="personalColor">
+        <mat-nav-list class="paddingForList">
+            <a mat-list-item>
+                <!-- Parte vuota per dare padding alla sidenav -->
+            </a>
+        </mat-nav-list>
+        <mat-nav-list class="paddingForList">
+            <a mat-list-item routerLink="users">
+                <h2 class="textColor">Users</h2>
+            </a>
+        </mat-nav-list>
+        <mat-nav-list class="paddingForList">
+            <a mat-list-item routerLink="tasks">
+                <h2 class="textColor">Tasks</h2>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <mat-icon class="iconButton" (click)="sidenav.toggle()">view_headline</mat-icon>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

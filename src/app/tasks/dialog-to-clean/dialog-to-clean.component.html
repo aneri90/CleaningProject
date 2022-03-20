@@ -1,0 +1,16 @@
+<div><h3>Chi sei?</h3></div>
+<div class="row mt-5 justify-content-end" >
+    <mat-form-field appearance="fill" [formGroup]="formGroup">
+        <mat-label>Scegli</mat-label>
+        <mat-select [(ngModel)]="username" formControlName="pulitore">
+          <mat-option *ngFor="let user of users" [value]="user.username">
+            {{user.username}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+</div>
+<div><h3>{{data.title}}</h3></div>
+    <div class="row mt-5 justify-content-end">
+      <button mat-raised-button color="primary" class="mr-2" (click)="savePulitore();getById();saveTask();modifyDate();">Sì</button>
+      <button mat-raised-button color="accent" (click)="close()">No</button>
+    </div>
