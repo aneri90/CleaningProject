@@ -167,8 +167,8 @@ export class TasksComponent implements OnInit {
     this.filter.pageIndex = event.pageIndex;
     this.filter.pageSize = event.pageSize;
     this.tasksService.getListTasksFiltered(this.filter).subscribe((result) => {
-      this.totalElements = result.data.totalElements;
-      this.tasks = result.data.content;
+      this.totalElements = result.data.length;
+      this.tasks = result.data;
     });
   }
   ordina(event: MatSort) {

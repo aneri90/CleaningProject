@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   OperationResult,
-  OperationResultUsers,
 } from '../model/operationResult';
 import { Users } from '../model/users';
 
@@ -14,18 +13,18 @@ export class UsersService {
   baseUrl = 'http://localhost:8081';
   constructor(private http: HttpClient) {}
 
-  public getListUsers(): Observable<OperationResultUsers> {
-    return this.http.get<OperationResultUsers>(
+  public getListUsers(): Observable<OperationResult<Users[]>> {
+    return this.http.get<OperationResult<Users[]>>(
       this.baseUrl + '/Users/listUsers'
     );
   }
-  public deleteUser(id: number): Observable<OperationResultUsers> {
-    return this.http.delete<OperationResultUsers>(
+  public deleteUser(id: number): Observable<OperationResult<Users>> {
+    return this.http.delete<OperationResult<Users>>(
       this.baseUrl + '/Users/deleteUser/' + id
     );
   }
-  public insertUser(user: Users): Observable<OperationResultUsers> {
-    return this.http.post<OperationResultUsers>(
+  public insertUser(user: Users): Observable<OperationResult<Users>> {
+    return this.http.post<OperationResult<Users>>(
       this.baseUrl + '/Users/insertUser',
       user
     );

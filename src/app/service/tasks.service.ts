@@ -43,16 +43,16 @@ export class TasksService {
       this.baseUrl + '/Tasks/deleteTask/' + id
     );
   }
-  public filterSearch(filter: string): Observable<OperationResult<Tasks>> {
-    return this.http.post<OperationResult<Tasks>>(
+  public filterSearch(filter: string): Observable<OperationResult<Tasks[]>> {
+    return this.http.post<OperationResult<Tasks[]>>(
       this.baseUrl + '/Tasks/search',
       filter
     );
   }
   public getListTasksFiltered(
     filter: PageAndSortFilter
-  ): Observable<OperationResult<Tasks>> {
-    return this.http.post<OperationResult<Tasks>>(
+  ): Observable<OperationResult<Tasks[]>> {
+    return this.http.post<OperationResult<Tasks[]>>(
       this.baseUrl + '/Tasks/listFiltered',
       filter
     );
